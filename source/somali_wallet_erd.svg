@@ -1,0 +1,396 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2820" height="1010" viewBox="0 0 2820 1010" font-family="Segoe UI, Arial, sans-serif">
+<rect width="2820" height="1010" fill="#f8fafc"/>
+<text x="40" y="52" font-size="28" font-weight="700" fill="#0f172a">Somali Mobile Money - source data model (ERD)</text>
+<text x="40" y="82" font-size="15" fill="#475569">MySQL database somali_wallet_source  |  10 tables  |  64 columns  |  from the Data Dictionary v1 (24 Oct 2026)  |  arrows run from foreign key (child) to primary key (parent)</text>
+<polyline points="520,282.0 450,282.0 450,258.0 380,258.0" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="502" y1="282.0" x2="520" y2="274.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="502" y1="282.0" x2="520" y2="282.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="502" y1="282.0" x2="520" y2="290.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="496" y1="274.0" x2="496" y2="290.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="388" y1="250.0" x2="388" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="394" y1="250.0" x2="394" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<polyline points="860,648.0 900,648.0 900,258.0 860,258.0" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="868" y1="640.0" x2="868" y2="656.0" stroke="#0f766e" stroke-width="1.8"/>
+<circle cx="880" cy="648.0" r="5" fill="white" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="868" y1="250.0" x2="868" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="874" y1="250.0" x2="874" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<polyline points="1000,800.0 922,800.0 922,258.0 860,258.0" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="982" y1="800.0" x2="1000" y2="792.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="982" y1="800.0" x2="1000" y2="800.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="982" y1="800.0" x2="1000" y2="808.0" stroke="#0f766e" stroke-width="1.8"/>
+<circle cx="972" cy="800.0" r="5" fill="white" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="868" y1="250.0" x2="868" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="874" y1="250.0" x2="874" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<polyline points="1000,330.0 944,330.0 944,258.0 860,258.0" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="982" y1="330.0" x2="1000" y2="322.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="982" y1="330.0" x2="1000" y2="330.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="982" y1="330.0" x2="1000" y2="338.0" stroke="#0f766e" stroke-width="1.8"/>
+<circle cx="972" cy="330.0" r="5" fill="white" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="868" y1="250.0" x2="868" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="874" y1="250.0" x2="874" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<polyline points="1000,306.0 964,306.0 964,258.0 860,258.0" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="982" y1="306.0" x2="1000" y2="298.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="982" y1="306.0" x2="1000" y2="306.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="982" y1="306.0" x2="1000" y2="314.0" stroke="#0f766e" stroke-width="1.8"/>
+<circle cx="972" cy="306.0" r="5" fill="white" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="868" y1="250.0" x2="868" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<line x1="874" y1="250.0" x2="874" y2="266.0" stroke="#0f766e" stroke-width="1.8"/>
+<polyline points="1340,752.0 1380,752.0 1380,258.0 1340,258.0" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="1358" y1="752.0" x2="1340" y2="744.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1358" y1="752.0" x2="1340" y2="752.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1358" y1="752.0" x2="1340" y2="760.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<circle cx="1368" cy="752.0" r="5" fill="white" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1348" y1="250.0" x2="1348" y2="266.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1354" y1="250.0" x2="1354" y2="266.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<polyline points="1340,776.0 1406,776.0 1406,638.0 1480,638.0" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="1358" y1="776.0" x2="1340" y2="768.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1358" y1="776.0" x2="1340" y2="776.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1358" y1="776.0" x2="1340" y2="784.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<circle cx="1368" cy="776.0" r="5" fill="white" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1472" y1="630.0" x2="1472" y2="646.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1466" y1="630.0" x2="1466" y2="646.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<polyline points="1480,662.0 1432,662.0 1432,258.0 1340,258.0" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="1462" y1="662.0" x2="1480" y2="654.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1462" y1="662.0" x2="1480" y2="662.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1462" y1="662.0" x2="1480" y2="670.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1456" y1="654.0" x2="1456" y2="670.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1348" y1="250.0" x2="1348" y2="266.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1354" y1="250.0" x2="1354" y2="266.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<polyline points="1960,396.0 1870,396.0 1870,258.0 1340,258.0" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="1942" y1="396.0" x2="1960" y2="388.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1942" y1="396.0" x2="1960" y2="396.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1942" y1="396.0" x2="1960" y2="404.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<circle cx="1932" cy="396.0" r="5" fill="white" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1348" y1="250.0" x2="1348" y2="266.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1354" y1="250.0" x2="1354" y2="266.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<polyline points="1960,420.0 1900,420.0 1900,638.0 1820,638.0" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-opacity="0.9"/>
+<line x1="1942" y1="420.0" x2="1960" y2="412.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1942" y1="420.0" x2="1960" y2="420.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1942" y1="420.0" x2="1960" y2="428.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<circle cx="1932" cy="420.0" r="5" fill="white" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1828" y1="630.0" x2="1828" y2="646.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<line x1="1834" y1="630.0" x2="1834" y2="646.0" stroke="#1d4ed8" stroke-width="1.8"/>
+<polyline points="2300,492.0 2355,492.0 2355,258.0 2440,258.0" fill="none" stroke="#c2410c" stroke-width="1.8" stroke-opacity="0.9" stroke-dasharray="7 5"/>
+<line x1="2318" y1="492.0" x2="2300" y2="484.0" stroke="#c2410c" stroke-width="1.8"/>
+<line x1="2318" y1="492.0" x2="2300" y2="492.0" stroke="#c2410c" stroke-width="1.8"/>
+<line x1="2318" y1="492.0" x2="2300" y2="500.0" stroke="#c2410c" stroke-width="1.8"/>
+<circle cx="2328" cy="492.0" r="5" fill="white" stroke="#c2410c" stroke-width="1.8"/>
+<line x1="2432" y1="250.0" x2="2432" y2="266.0" stroke="#c2410c" stroke-width="1.8"/>
+<circle cx="2420" cy="258.0" r="5" fill="white" stroke="#c2410c" stroke-width="1.8"/>
+<polyline points="2300,564.0 2385,564.0 2385,688.0 2440,688.0" fill="none" stroke="#c2410c" stroke-width="1.8" stroke-opacity="0.9" stroke-dasharray="7 5"/>
+<line x1="2318" y1="564.0" x2="2300" y2="556.0" stroke="#c2410c" stroke-width="1.8"/>
+<line x1="2318" y1="564.0" x2="2300" y2="564.0" stroke="#c2410c" stroke-width="1.8"/>
+<line x1="2318" y1="564.0" x2="2300" y2="572.0" stroke="#c2410c" stroke-width="1.8"/>
+<circle cx="2328" cy="564.0" r="5" fill="white" stroke="#c2410c" stroke-width="1.8"/>
+<line x1="2432" y1="680.0" x2="2432" y2="696.0" stroke="#c2410c" stroke-width="1.8"/>
+<circle cx="2420" cy="688.0" r="5" fill="white" stroke="#c2410c" stroke-width="1.8"/>
+<text x="40" y="180" font-size="13.5" fill="#334155">The people who own the wallets. Adds name and home</text>
+<text x="40" y="198" font-size="13.5" fill="#334155">city to wallet activity.</text>
+<rect x="43" y="214" width="340" height="138" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="40" y="210" width="340" height="138" rx="8" fill="white" stroke="#0f766e" stroke-width="1.6"/>
+<path d="M40,246 V218 Q40,210 48,210 H372 Q380,210 380,218 V246 Z" fill="#0f766e"/>
+<text x="52" y="234" font-size="16" font-weight="700" fill="white">customers</text>
+<text x="368" y="234" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">5,000 rows</text>
+<rect x="50" y="251" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="62" y="261.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="110" y="262.5" font-size="13.5" fill="#0f172a" font-weight="700">customer_id</text>
+<text x="370" y="262.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="41" y="270" width="338" height="24" fill="#f1f5f9"/>
+<text x="110" y="286.5" font-size="13.5" fill="#0f172a">full_name</text>
+<text x="370" y="286.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(150)</text>
+<text x="110" y="310.5" font-size="13.5" fill="#0f172a">home_city</text>
+<text x="370" y="310.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(50)</text>
+<rect x="41" y="318" width="338" height="24" fill="#f1f5f9"/>
+<text x="110" y="334.5" font-size="13.5" fill="#0f172a">registered_at</text>
+<text x="370" y="334.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<text x="40" y="570" font-size="13.5" fill="#334155">Generator settings and observation window, stored as</text>
+<text x="40" y="588" font-size="13.5" fill="#334155">one JSON document. Not linked to other tables.</text>
+<rect x="43" y="604" width="340" height="90" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="40" y="600" width="340" height="90" rx="8" fill="white" stroke="#4b5563" stroke-width="1.6"/>
+<path d="M40,636 V608 Q40,600 48,600 H372 Q380,600 380,608 V636 Z" fill="#4b5563"/>
+<text x="52" y="624" font-size="16" font-weight="700" fill="white">dataset_metadata</text>
+<text x="368" y="624" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">1 row</text>
+<rect x="50" y="641" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="62" y="651.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="110" y="652.5" font-size="13.5" fill="#0f172a" font-weight="700">metadata_key</text>
+<text x="370" y="652.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(50)</text>
+<rect x="41" y="660" width="338" height="24" fill="#f1f5f9"/>
+<text x="110" y="676.5" font-size="13.5" fill="#0f172a">metadata_json</text>
+<text x="370" y="676.5" font-size="12" fill="#64748b" text-anchor="end">JSON</text>
+<text x="520" y="162" font-size="13.5" fill="#334155">Wallet register with each wallet&#x27;s balance at the</text>
+<text x="520" y="180" font-size="13.5" fill="#334155">start of the period. Parent of every wallet</text>
+<text x="520" y="198" font-size="13.5" fill="#334155">reference.</text>
+<rect x="523" y="214" width="340" height="186" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="520" y="210" width="340" height="186" rx="8" fill="white" stroke="#0f766e" stroke-width="1.6"/>
+<path d="M520,246 V218 Q520,210 528,210 H852 Q860,210 860,218 V246 Z" fill="#0f766e"/>
+<text x="532" y="234" font-size="16" font-weight="700" fill="white">wallets_opening</text>
+<text x="848" y="234" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">5,000 rows</text>
+<rect x="530" y="251" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="542" y="261.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="590" y="262.5" font-size="13.5" fill="#0f172a" font-weight="700">wallet_id</text>
+<text x="850" y="262.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="521" y="270" width="338" height="24" fill="#f1f5f9"/>
+<rect x="530" y="275" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="542" y="285.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="590" y="286.5" font-size="13.5" fill="#0f172a">customer_id</text>
+<text x="850" y="286.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<text x="590" y="310.5" font-size="13.5" fill="#0f172a">currency</text>
+<text x="850" y="310.5" font-size="12" fill="#64748b" text-anchor="end">CHAR(3)</text>
+<rect x="521" y="318" width="338" height="24" fill="#f1f5f9"/>
+<text x="590" y="334.5" font-size="13.5" fill="#0f172a">status</text>
+<text x="850" y="334.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(12)</text>
+<text x="590" y="358.5" font-size="13.5" fill="#0f172a">opening_balance_cents</text>
+<text x="850" y="358.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<rect x="521" y="366" width="338" height="24" fill="#f1f5f9"/>
+<text x="590" y="382.5" font-size="13.5" fill="#0f172a">snapshot_at</text>
+<text x="850" y="382.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<text x="520" y="570" font-size="13.5" fill="#334155">Wallet balances at the closing cutoff. Opening</text>
+<text x="520" y="588" font-size="13.5" fill="#334155">balance + ledger movements = closing ledger balance.</text>
+<rect x="523" y="604" width="340" height="186" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="520" y="600" width="340" height="186" rx="8" fill="white" stroke="#0f766e" stroke-width="1.6"/>
+<path d="M520,636 V608 Q520,600 528,600 H852 Q860,600 860,608 V636 Z" fill="#0f766e"/>
+<text x="532" y="624" font-size="16" font-weight="700" fill="white">wallets_closing</text>
+<text x="848" y="624" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">5,000 rows</text>
+<rect x="530" y="641" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="542" y="651.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<rect x="558" y="641" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="570" y="651.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="590" y="652.5" font-size="13.5" fill="#0f172a" font-weight="700">wallet_id</text>
+<text x="850" y="652.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="521" y="660" width="338" height="24" fill="#f1f5f9"/>
+<text x="590" y="676.5" font-size="13.5" fill="#0f172a">currency</text>
+<text x="850" y="676.5" font-size="12" fill="#64748b" text-anchor="end">CHAR(3)</text>
+<text x="590" y="700.5" font-size="13.5" fill="#0f172a">snapshot_at</text>
+<text x="850" y="700.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<rect x="521" y="708" width="338" height="24" fill="#f1f5f9"/>
+<text x="590" y="724.5" font-size="13.5" fill="#0f172a">ledger_balance_cents</text>
+<text x="850" y="724.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<text x="590" y="748.5" font-size="13.5" fill="#0f172a">held_balance_cents</text>
+<text x="850" y="748.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<rect x="521" y="756" width="338" height="24" fill="#f1f5f9"/>
+<text x="590" y="772.5" font-size="13.5" fill="#0f172a">available_balance_cents</text>
+<text x="850" y="772.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<text x="1000" y="162" font-size="13.5" fill="#334155">A customer&#x27;s intent to send money to another wallet.</text>
+<text x="1000" y="180" font-size="13.5" fill="#334155">One logical payment; retries keep the same</text>
+<text x="1000" y="198" font-size="13.5" fill="#334155">payment_id.</text>
+<rect x="1003" y="214" width="340" height="258" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="1000" y="210" width="340" height="258" rx="8" fill="white" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M1000,246 V218 Q1000,210 1008,210 H1332 Q1340,210 1340,218 V246 Z" fill="#1d4ed8"/>
+<text x="1012" y="234" font-size="16" font-weight="700" fill="white">payment_requests</text>
+<text x="1328" y="234" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">100,000 rows</text>
+<rect x="1010" y="251" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="1022" y="261.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="1070" y="262.5" font-size="13.5" fill="#0f172a" font-weight="700">payment_id</text>
+<text x="1330" y="262.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1001" y="270" width="338" height="24" fill="#f1f5f9"/>
+<text x="1070" y="286.5" font-size="13.5" fill="#0f172a">requested_at</text>
+<text x="1330" y="286.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<rect x="1010" y="299" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1022" y="309.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="1070" y="310.5" font-size="13.5" fill="#0f172a">sender_wallet_id</text>
+<text x="1330" y="310.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1001" y="318" width="338" height="24" fill="#f1f5f9"/>
+<rect x="1010" y="323" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1022" y="333.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="1070" y="334.5" font-size="13.5" fill="#0f172a">recipient_wallet_id</text>
+<text x="1330" y="334.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<text x="1070" y="358.5" font-size="13.5" fill="#0f172a">amount_cents</text>
+<text x="1330" y="358.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<rect x="1001" y="366" width="338" height="24" fill="#f1f5f9"/>
+<text x="1070" y="382.5" font-size="13.5" fill="#0f172a">currency</text>
+<text x="1330" y="382.5" font-size="12" fill="#64748b" text-anchor="end">CHAR(3)</text>
+<text x="1070" y="406.5" font-size="13.5" fill="#0f172a">payment_type</text>
+<text x="1330" y="406.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(10)</text>
+<rect x="1001" y="414" width="338" height="24" fill="#f1f5f9"/>
+<text x="1070" y="430.5" font-size="13.5" fill="#0f172a">channel</text>
+<text x="1330" y="430.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(10)</text>
+<text x="1070" y="454.5" font-size="13.5" fill="#0f172a">origin_city</text>
+<text x="1330" y="454.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(50)</text>
+<text x="1000" y="632" font-size="13.5" fill="#334155">Money movements of successful attempts: one debit</text>
+<text x="1000" y="650" font-size="13.5" fill="#334155">for the sender and one credit for the recipient,</text>
+<text x="1000" y="668" font-size="13.5" fill="#334155">summing to zero.</text>
+<rect x="1003" y="684" width="340" height="234" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="1000" y="680" width="340" height="234" rx="8" fill="white" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M1000,716 V688 Q1000,680 1008,680 H1332 Q1340,680 1340,688 V716 Z" fill="#1d4ed8"/>
+<text x="1012" y="704" font-size="16" font-weight="700" fill="white">ledger_entries</text>
+<text x="1328" y="704" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">168,106 rows</text>
+<rect x="1010" y="721" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="1022" y="731.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="1070" y="732.5" font-size="13.5" fill="#0f172a" font-weight="700">entry_id</text>
+<text x="1330" y="732.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1001" y="740" width="338" height="24" fill="#f1f5f9"/>
+<rect x="1010" y="745" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1022" y="755.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="1070" y="756.5" font-size="13.5" fill="#0f172a">payment_id</text>
+<text x="1330" y="756.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1010" y="769" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1022" y="779.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="1070" y="780.5" font-size="13.5" fill="#0f172a">attempt_id</text>
+<text x="1330" y="780.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(32)</text>
+<rect x="1001" y="788" width="338" height="24" fill="#f1f5f9"/>
+<rect x="1010" y="793" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1022" y="803.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="1070" y="804.5" font-size="13.5" fill="#0f172a">wallet_id</text>
+<text x="1330" y="804.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<text x="1070" y="828.5" font-size="13.5" fill="#0f172a">posted_at</text>
+<text x="1330" y="828.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<rect x="1001" y="836" width="338" height="24" fill="#f1f5f9"/>
+<text x="1070" y="852.5" font-size="13.5" fill="#0f172a">signed_amount_cents</text>
+<text x="1330" y="852.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<text x="1070" y="876.5" font-size="13.5" fill="#0f172a">currency</text>
+<text x="1330" y="876.5" font-size="12" fill="#64748b" text-anchor="end">CHAR(3)</text>
+<rect x="1001" y="884" width="338" height="24" fill="#f1f5f9"/>
+<text x="1070" y="900.5" font-size="13.5" fill="#0f172a">entry_type</text>
+<text x="1330" y="900.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(20)</text>
+<text x="1480" y="560" font-size="13.5" fill="#334155">Each execution try of a payment (up to 3), with the</text>
+<text x="1480" y="578" font-size="13.5" fill="#334155">sender&#x27;s available balance when the try started.</text>
+<rect x="1483" y="594" width="340" height="162" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="1480" y="590" width="340" height="162" rx="8" fill="white" stroke="#1d4ed8" stroke-width="1.6"/>
+<path d="M1480,626 V598 Q1480,590 1488,590 H1812 Q1820,590 1820,598 V626 Z" fill="#1d4ed8"/>
+<text x="1492" y="614" font-size="16" font-weight="700" fill="white">payment_attempts</text>
+<text x="1808" y="614" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">100,766 rows</text>
+<rect x="1490" y="631" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="1502" y="641.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="1550" y="642.5" font-size="13.5" fill="#0f172a" font-weight="700">attempt_id</text>
+<text x="1810" y="642.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(32)</text>
+<rect x="1481" y="650" width="338" height="24" fill="#f1f5f9"/>
+<rect x="1490" y="655" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1502" y="665.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="1550" y="666.5" font-size="13.5" fill="#0f172a">payment_id</text>
+<text x="1810" y="666.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<text x="1550" y="690.5" font-size="13.5" fill="#0f172a">attempt_number</text>
+<text x="1810" y="690.5" font-size="12" fill="#64748b" text-anchor="end">INT</text>
+<rect x="1481" y="698" width="338" height="24" fill="#f1f5f9"/>
+<text x="1550" y="714.5" font-size="13.5" fill="#0f172a">started_at</text>
+<text x="1810" y="714.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<text x="1550" y="738.5" font-size="13.5" fill="#0f172a">available_balance_cents_at_start</text>
+<text x="1810" y="738.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<text x="1960" y="252" font-size="13.5" fill="#334155">Every received copy of a payment state event</text>
+<text x="1960" y="270" font-size="13.5" fill="#334155">(REQUESTED / PENDING / SUCCEEDED / FAILED), incl.</text>
+<text x="1960" y="288" font-size="13.5" fill="#334155">duplicates and late arrivals.</text>
+<rect x="1963" y="304" width="340" height="330" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="1960" y="300" width="340" height="330" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M1960,336 V308 Q1960,300 1968,300 H2292 Q2300,300 2300,308 V336 Z" fill="#7c3aed"/>
+<text x="1972" y="324" font-size="16" font-weight="700" fill="white">event_deliveries</text>
+<text x="2288" y="324" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">205,362 rows</text>
+<rect x="1970" y="341" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="1982" y="351.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="2030" y="352.5" font-size="13.5" fill="#0f172a" font-weight="700">source_row_id</text>
+<text x="2290" y="352.5" font-size="12" fill="#64748b" text-anchor="end">BIGINT</text>
+<rect x="1961" y="360" width="338" height="24" fill="#f1f5f9"/>
+<text x="2030" y="376.5" font-size="13.5" fill="#0f172a">event_id</text>
+<text x="2290" y="376.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1970" y="389" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1982" y="399.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="2030" y="400.5" font-size="13.5" fill="#0f172a">payment_id</text>
+<text x="2290" y="400.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1961" y="408" width="338" height="24" fill="#f1f5f9"/>
+<rect x="1970" y="413" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1982" y="423.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="2030" y="424.5" font-size="13.5" fill="#0f172a">attempt_id</text>
+<text x="2290" y="424.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(32)</text>
+<text x="2030" y="448.5" font-size="13.5" fill="#0f172a">event_at</text>
+<text x="2290" y="448.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<rect x="1961" y="456" width="338" height="24" fill="#f1f5f9"/>
+<text x="2030" y="472.5" font-size="13.5" fill="#0f172a">status</text>
+<text x="2290" y="472.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(12)</text>
+<rect x="1970" y="485" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1982" y="495.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="2030" y="496.5" font-size="13.5" fill="#0f172a">reason_code</text>
+<text x="2290" y="496.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(48)  NULL</text>
+<rect x="1961" y="504" width="338" height="24" fill="#f1f5f9"/>
+<text x="2030" y="520.5" font-size="13.5" fill="#0f172a">reason_source</text>
+<text x="2290" y="520.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(12)  NULL</text>
+<text x="2030" y="544.5" font-size="13.5" fill="#0f172a">system_component</text>
+<text x="2290" y="544.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(40)</text>
+<rect x="1961" y="552" width="338" height="24" fill="#f1f5f9"/>
+<rect x="1970" y="557" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="1982" y="567.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="2030" y="568.5" font-size="13.5" fill="#0f172a">incident_id</text>
+<text x="2290" y="568.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)  NULL</text>
+<rect x="1970" y="581" width="24" height="14" rx="3" fill="#10b981"/>
+<text x="1982" y="591.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">UQ</text>
+<text x="2030" y="592.5" font-size="13.5" fill="#0f172a">delivery_id</text>
+<text x="2290" y="592.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="1961" y="600" width="338" height="24" fill="#f1f5f9"/>
+<text x="2030" y="616.5" font-size="13.5" fill="#0f172a">ingested_at</text>
+<text x="2290" y="616.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<text x="2440" y="180" font-size="13.5" fill="#334155">Lookup of the failure / uncertainty codes on events,</text>
+<text x="2440" y="198" font-size="13.5" fill="#334155">and whether a retry is allowed after failure.</text>
+<rect x="2443" y="214" width="340" height="162" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="2440" y="210" width="340" height="162" rx="8" fill="white" stroke="#c2410c" stroke-width="1.6"/>
+<path d="M2440,246 V218 Q2440,210 2448,210 H2772 Q2780,210 2780,218 V246 Z" fill="#c2410c"/>
+<text x="2452" y="234" font-size="16" font-weight="700" fill="white">reason_codes</text>
+<text x="2768" y="234" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">7 rows</text>
+<rect x="2450" y="251" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="2462" y="261.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="2510" y="262.5" font-size="13.5" fill="#0f172a" font-weight="700">reason_code</text>
+<text x="2770" y="262.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(48)</text>
+<rect x="2441" y="270" width="338" height="24" fill="#f1f5f9"/>
+<text x="2510" y="286.5" font-size="13.5" fill="#0f172a">reason_class</text>
+<text x="2770" y="286.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(16)</text>
+<text x="2510" y="310.5" font-size="13.5" fill="#0f172a">system_component</text>
+<text x="2770" y="310.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(40)</text>
+<rect x="2441" y="318" width="338" height="24" fill="#f1f5f9"/>
+<text x="2510" y="334.5" font-size="13.5" fill="#0f172a">description</text>
+<text x="2770" y="334.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(255)</text>
+<text x="2510" y="358.5" font-size="13.5" fill="#0f172a">retry_after_confirmed_failure</text>
+<text x="2770" y="358.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(3)</text>
+<text x="2440" y="610" font-size="13.5" fill="#334155">Simulated payment-switch degradation windows, scoped</text>
+<text x="2440" y="628" font-size="13.5" fill="#334155">by city and channel.</text>
+<rect x="2443" y="644" width="340" height="210" rx="8" fill="#0f172a" opacity="0.08"/>
+<rect x="2440" y="640" width="340" height="210" rx="8" fill="white" stroke="#c2410c" stroke-width="1.6"/>
+<path d="M2440,676 V648 Q2440,640 2448,640 H2772 Q2780,640 2780,648 V676 Z" fill="#c2410c"/>
+<text x="2452" y="664" font-size="16" font-weight="700" fill="white">system_incidents</text>
+<text x="2768" y="664" font-size="12.5" fill="white" text-anchor="end" opacity="0.9">15 rows</text>
+<rect x="2450" y="681" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="2462" y="691.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="2510" y="692.5" font-size="13.5" fill="#0f172a" font-weight="700">incident_id</text>
+<text x="2770" y="692.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="2441" y="700" width="338" height="24" fill="#f1f5f9"/>
+<text x="2510" y="716.5" font-size="13.5" fill="#0f172a">started_at</text>
+<text x="2770" y="716.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<text x="2510" y="740.5" font-size="13.5" fill="#0f172a">ended_at</text>
+<text x="2770" y="740.5" font-size="12" fill="#64748b" text-anchor="end">DATETIME(3)</text>
+<rect x="2441" y="748" width="338" height="24" fill="#f1f5f9"/>
+<text x="2510" y="764.5" font-size="13.5" fill="#0f172a">affected_city</text>
+<text x="2770" y="764.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(50)</text>
+<text x="2510" y="788.5" font-size="13.5" fill="#0f172a">affected_channel</text>
+<text x="2770" y="788.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(10)</text>
+<rect x="2441" y="796" width="338" height="24" fill="#f1f5f9"/>
+<text x="2510" y="812.5" font-size="13.5" fill="#0f172a">incident_type</text>
+<text x="2770" y="812.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(60)</text>
+<text x="2510" y="836.5" font-size="13.5" fill="#0f172a">recorded_by</text>
+<text x="2770" y="836.5" font-size="12" fill="#64748b" text-anchor="end">VARCHAR(24)</text>
+<rect x="40" y="760" width="340" height="210" rx="8" fill="white" stroke="#cbd5e1"/>
+<text x="54" y="788" font-size="15" font-weight="700" fill="#0f172a">How to read it</text>
+<line x1="60" y1="818" x2="110" y2="818" stroke="#334155" stroke-width="1.8"/>
+<line x1="102" y1="810" x2="102" y2="826" stroke="#334155" stroke-width="1.8"/>
+<line x1="96" y1="810" x2="96" y2="826" stroke="#334155" stroke-width="1.8"/>
+<text x="126" y="823" font-size="13" fill="#334155">exactly one (parent side)</text>
+<line x1="60" y1="846" x2="110" y2="846" stroke="#334155" stroke-width="1.8"/>
+<line x1="102" y1="838" x2="102" y2="854" stroke="#334155" stroke-width="1.8"/>
+<circle cx="90" cy="846" r="5" fill="white" stroke="#334155" stroke-width="1.8"/>
+<text x="126" y="851" font-size="13" fill="#334155">zero or one (dashed = optional FK)</text>
+<line x1="60" y1="874" x2="110" y2="874" stroke="#334155" stroke-width="1.8"/>
+<line x1="92" y1="874" x2="110" y2="866" stroke="#334155" stroke-width="1.8"/>
+<line x1="92" y1="874" x2="110" y2="874" stroke="#334155" stroke-width="1.8"/>
+<line x1="92" y1="874" x2="110" y2="882" stroke="#334155" stroke-width="1.8"/>
+<line x1="86" y1="866" x2="86" y2="882" stroke="#334155" stroke-width="1.8"/>
+<text x="126" y="879" font-size="13" fill="#334155">one or many (child side)</text>
+<line x1="60" y1="902" x2="110" y2="902" stroke="#334155" stroke-width="1.8"/>
+<line x1="92" y1="902" x2="110" y2="894" stroke="#334155" stroke-width="1.8"/>
+<line x1="92" y1="902" x2="110" y2="902" stroke="#334155" stroke-width="1.8"/>
+<line x1="92" y1="902" x2="110" y2="910" stroke="#334155" stroke-width="1.8"/>
+<circle cx="82" cy="902" r="5" fill="white" stroke="#334155" stroke-width="1.8"/>
+<text x="126" y="907" font-size="13" fill="#334155">zero or many (child side)</text>
+<rect x="60" y="921" width="24" height="14" rx="3" fill="#f59e0b"/>
+<text x="72" y="931.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">PK</text>
+<text x="90" y="932" font-size="13" fill="#334155">primary key</text>
+<rect x="168" y="921" width="24" height="14" rx="3" fill="#3b82f6"/>
+<text x="180" y="931.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">FK</text>
+<text x="198" y="932" font-size="13" fill="#334155">foreign key</text>
+<rect x="276" y="921" width="24" height="14" rx="3" fill="#10b981"/>
+<text x="288" y="931.5" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">UQ</text>
+<text x="306" y="932" font-size="13" fill="#334155">unique</text>
+</svg>

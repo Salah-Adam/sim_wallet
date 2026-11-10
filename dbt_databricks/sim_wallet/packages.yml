@@ -1,0 +1,5 @@
+# This adds the dbt_u tils package, which gives you range and expression tests. Run dbt deps once after adding it.
+
+packages:
+  - package: dbt-labs/dbt_utils
+    version: [">=1.3.0", "<2.0.0"]

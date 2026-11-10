@@ -1,0 +1,15 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# dbt build output
+target/
+dbt_packages/
+logs/
+
+# Local credentials and IDE state
+.env
+profiles.yml
+.idea/workspace.xml

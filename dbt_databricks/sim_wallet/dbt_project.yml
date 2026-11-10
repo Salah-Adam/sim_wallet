@@ -1,0 +1,56 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'sim_wallet'
+version: '1.0.0'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'sim_wallet'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+vars:
+  bronze_catalog: sim_wallet
+  bronze_schema: bronze
+  snapshot_id: somali_snapshot_v1
+  late_threshold_seconds: 600
+  min_sample_attempts: 30          # rpt_incident_comparison: incidents with fewer attempts are flagged as small samples
+  small_group_min_payments: 500    # rpt_city_channel_summary: city/channel groups below this are flagged before ranking
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+
+models:
+  sim_wallet:
+    silver:
+      +materialized: table
+      +file_format: delta
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    gold:
+      +materialized: table
+      +file_format: delta
+      +schema: gold
+
+
+#    staging:
+#      +materialized: view

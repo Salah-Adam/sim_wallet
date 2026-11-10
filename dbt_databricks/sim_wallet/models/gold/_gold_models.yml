@@ -1,0 +1,252 @@
+version: 2
+
+models:
+  # ---------------------------------------------------------------- dimensions
+
+  - name: dim_wallet
+    description: One row per wallet with its owning customer (wallets and customers are 1:1).
+    columns:
+      - name: wallet_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests: [unique, not_null]        # unique = proves the 1:1 wallet/customer assumption
+      - name: customer_name
+        data_tests: [not_null]                # proves every wallet found its customer
+      - name: wallet_status
+        data_tests:
+          - accepted_values:
+              arguments: {values: ['ACTIVE', 'INACTIVE']}
+
+  - name: dim_reason
+    description: One row per system reason code, plus an UNKNOWN member, with a business failure category.
+    columns:
+      - name: reason_code
+        data_tests:
+          - unique
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [ 'INSUFFICIENT_FUNDS', 'RECIPIENT_INACTIVE', 'TRANSFER_LIMIT_EXCEEDED',
+                          'SERVICE_UNAVAILABLE', 'PROCESSING_ERROR', 'PROCESSING_EXPIRED',
+                          'RESPONSE_TIMEOUT', 'UNKNOWN' ]
+      - name: failure_category
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments: { values: [ 'TECHNICAL_FAILURE', 'VALID_REJECTION', 'UNCERTAINTY', 'UNKNOWN_REASON' ] }
+
+  - name: dim_incident
+    description: One row per recorded service incident. 'ALL' in affected_city / affected_channel means every city / channel.
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "ended_at_utc > started_at_utc"
+      - dbt_utils.expression_is_true:     # rpt_incident_comparison compares clock-time windows within one local day
+          arguments:
+            expression: "incident_date_local = to_date(ended_at_local)"
+    columns:
+      - name: incident_id
+        data_tests: [unique, not_null]
+      - name: affected_city
+        data_tests: [not_null]
+      - name: affected_channel
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments: {values: ['USSD', 'APP', 'ALL']}
+
+  - name: dim_date
+    description: One row per local business date (Africa/Mogadishu) in the observation window.
+    columns:
+      - name: date_local
+        data_tests: [unique, not_null]
+
+  # ---------------------------------------------------------------- facts
+
+  - name: fct_payments
+    description: One row per logical payment with its final supported outcome at the observation cutoff.
+    data_tests:
+      - dbt_utils.equal_rowcount:
+          arguments:
+            compare_model: ref('payment_requests')
+    columns:
+      - name: payment_id
+        data_tests: [unique, not_null]
+      - name: sender_customer_id
+        data_tests: [not_null]
+      - name: sender_wallet_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_wallet'), field: wallet_id}
+      - name: requested_date_local
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_date'), field: date_local}
+              config:
+                where: "is_in_observation_window"
+      - name: final_outcome
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments: {values: ['SUCCEEDED', 'FAILED', 'PENDING', 'UNKNOWN', 'CONFLICT', 'NO_ATTEMPT']}
+      - name: first_failure_reason_code
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_reason'), field: reason_code}
+      - name: attempt_count
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 1, max_value: 3}
+      - name: successful_amount_cents
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+
+  - name: fct_payment_attempts
+    description: One row per payment attempt with outcome, reason, payment context and evidence at the cutoff.
+    data_tests:
+      - dbt_utils.equal_rowcount:
+          arguments:
+            compare_model: ref('payment_attempts')
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "not (final_outcome = 'FAILED' and failure_reason_code is null)"
+    columns:
+      - name: attempt_id
+        data_tests: [ unique, not_null ]
+      - name: payment_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: { to: ref('fct_payments'), field: payment_id }
+      - name: sender_wallet_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_wallet'), field: wallet_id}
+      - name: started_date_local
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_date'), field: date_local}
+              config:
+                where: "is_started_in_observation_window"
+      - name: failure_reason_code
+        data_tests:
+          - relationships:
+              arguments: { to: ref('dim_reason'), field: reason_code }
+          - dbt_utils.expression_is_true:
+              arguments: { expression: "<> 'RESPONSE_TIMEOUT'" }
+      - name: final_outcome
+        data_tests:
+          - accepted_values:
+              arguments: { values: [ 'SUCCEEDED', 'FAILED', 'PENDING', 'UNKNOWN', 'CONFLICT' ] }
+
+  - name: fct_wallet_balances
+    description: >
+      One row per wallet: opening balance, ledger movements, closing snapshot, reconciliation results and
+      unresolved attempts. Held balances are wallet-level; they are not allocated to attempts.
+    data_tests:
+      - dbt_utils.equal_rowcount:
+          arguments:
+            compare_model: ref('wallet_opening')
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "has_closing_snapshot"
+      - dbt_utils.expression_is_true:      # warn, not error: Q9 asks to show discrepancies, not hide them
+          arguments:
+            expression: "is_ledger_reconciled"
+          config:
+            severity: warn
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "is_balance_split_reconciled"
+          config:
+            severity: warn
+    columns:
+      - name: wallet_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('dim_wallet'), field: wallet_id}
+      - name: closing_held_balance_cents
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+
+  # ---------------------------------------------------------------- reports
+
+  - name: rpt_investigation_queue
+    description: >
+      Q7. Every attempt without a definitive supported outcome at the cutoff, with evidence, a next check,
+      a proposed owner and a priority rank. Age bands are proposed triage bands, not a service-level agreement.
+    columns:
+      - name: attempt_id
+        data_tests: [unique, not_null]
+      - name: priority_rank
+        data_tests: [unique, not_null]
+      - name: supported_outcome
+        data_tests:
+          - accepted_values:
+              arguments: {values: ['PENDING', 'UNKNOWN', 'CONFLICT']}
+      - name: next_evidence_check
+        data_tests: [not_null]
+      - name: proposed_owner
+        data_tests:
+          - accepted_values:
+              arguments: {values: ['Payment Operations', 'Payment Engineering', 'Wallet Reconciliation']}
+
+  - name: rpt_reconciliation_exceptions
+    description: Q9 detail. One row per reconciliation problem; an empty table means every check passed.
+    columns:
+      - name: exception_id
+        data_tests: [unique, not_null]
+      - name: exception_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SUCCESS_POSTING_MISMATCH', 'POSTING_ON_NON_SUCCESS', 'LEDGER_WITHOUT_ATTEMPT',
+                         'WALLET_LEDGER_MISMATCH', 'WALLET_BALANCE_SPLIT_MISMATCH']
+
+  - name: rpt_reconciliation_summary
+    description: Q9 summary. One row per reconciliation check with records checked, exceptions and PASS/EXCEPTION.
+    columns:
+      - name: check_name
+        data_tests: [unique, not_null]
+      - name: status
+        data_tests:
+          - accepted_values:              # warn: an EXCEPTION is a finding to report, not a pipeline failure
+              arguments: {values: ['PASS']}
+              config:
+                severity: warn
+
+  - name: rpt_incident_comparison
+    description: >
+      Q4. One row per incident: attempts inside the incident window and scope compared with the same scope,
+      weekday and local clock-time window on other dates. Shows association, not cause.
+    data_tests:
+      - dbt_utils.equal_rowcount:
+          arguments:
+            compare_model: ref('dim_incident')
+    columns:
+      - name: incident_id
+        data_tests: [unique, not_null]
+
+  - name: rpt_city_channel_summary
+    description: >
+      Q3. One row per origin city x channel for payments requested in the observation window.
+      Rates sit next to their numerators and denominators; never average rates across rows.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: ['origin_city', 'channel']
+    columns:
+      - name: payments
+        data_tests: [not_null]
+
+  - name: rpt_feed_quality
+    description: Q10. Event-feed quality metrics (duplicates, lateness, completeness), one row per metric.
+    columns:
+      - name: metric_name
+        data_tests: [unique, not_null]
+      - name: metric_value
+        data_tests: [not_null]

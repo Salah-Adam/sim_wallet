@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: int_attempt_outcomes
+    description: One row per payment attempt with its supported outcome at the observation cutoff.
+    data_tests:
+      - dbt_utils.equal_rowcount:
+          arguments:
+            compare_model: ref('payment_attempts')
+    columns:
+      - name: attempt_id
+        data_tests: [unique, not_null]
+      - name: final_outcome
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments: {values: ['SUCCEEDED', 'FAILED', 'PENDING', 'UNKNOWN', 'CONFLICT']}
+      - name: outcome_source
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments: {values: ['EVENT', 'LEDGER', 'RETRY', 'PENDING_EVENT', 'REQUESTED_ONLY', 'NO_EVENTS', 'CONFLICTING_EVIDENCE']}
+
+
+
+
+unit_tests:
+  - name: timeout_then_success_is_succeeded
+    model: int_attempt_outcomes
+    given:
+      - input: ref('dataset_metadata')
+        rows:
+          - {observation_cutoff_utc: "2026-09-28 21:00:00"}
+      - input: ref('payment_attempts')
+        rows:
+          - {attempt_id: A1, payment_id: P1, attempt_number: 1, started_at_utc: "2026-07-01 10:00:00"}
+      - input: ref('events')
+        rows:
+          - {attempt_id: A1, event_id: E1, status: REQUESTED, event_at_utc: "2026-07-01 10:00:00", first_ingested_at_utc: "2026-07-01 10:00:05"}
+          - {attempt_id: A1, event_id: E2, status: PENDING, reason_code: RESPONSE_TIMEOUT, event_at_utc: "2026-07-01 10:00:30", first_ingested_at_utc: "2026-07-01 10:00:35"}
+          - {attempt_id: A1, event_id: E3, status: SUCCEEDED, event_at_utc: "2026-07-01 10:05:00", first_ingested_at_utc: "2026-07-01 10:05:02"}
+      - input: ref('ledger_entries')
+        rows: []
+    expect:
+      rows:
+        - {attempt_id: A1, final_outcome: SUCCEEDED, outcome_source: EVENT}
+
+  - name: only_requested_plus_ledger_is_succeeded
+    model: int_attempt_outcomes
+    given:
+      - input: ref('dataset_metadata')
+        rows:
+          - {observation_cutoff_utc: "2026-09-28 21:00:00"}
+      - input: ref('payment_attempts')
+        rows:
+          - {attempt_id: A2, payment_id: P2, attempt_number: 1, started_at_utc: "2026-07-01 10:05:00"}
+      - input: ref('events')
+        rows:
+          - {attempt_id: A2, event_id: E2, status: REQUESTED, event_at_utc: "2026-07-01 10:05:00", first_ingested_at_utc: "2026-07-01 10:05:05"}
+      - input: ref('ledger_entries')
+        rows:
+          - {entry_id: LED01, attempt_id: A2, payment_id: P2, wallet_id: wal01, signed_amount_cents: -50, posted_at_utc: "2026-07-01 10:05:01"}
+          - {entry_id: LED02, attempt_id: A2, payment_id: P2, wallet_id: wal02, signed_amount_cents: 50,  posted_at_utc: "2026-07-01 10:05:01"}
+    expect:
+      rows:
+        - {attempt_id: A2, final_outcome: SUCCEEDED, outcome_source: LEDGER, has_balanced_ledger: true, ledger_entry_count: 2}

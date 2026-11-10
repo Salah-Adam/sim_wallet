@@ -1,0 +1,320 @@
+version: 2
+
+models:
+  - name: customers
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'customers')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'customers')
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: full_name
+        data_tests: [not_null]
+      - name: home_city
+        data_tests: [not_null]
+      - name: registered_at_utc
+        data_tests: [not_null]
+
+  - name: wallet_opening
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'wallets_opening')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'wallets_opening')
+    columns:
+      - name: wallet_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('customers'), field: customer_id}
+      - name: status
+        data_tests: [not_null]
+      - name: opening_balance_cents
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+
+  - name: wallet_closing
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'wallets_closing')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'wallets_closing')
+    columns:
+      - name: wallet_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('wallet_opening'), field: wallet_id}
+      - name: ledger_balance_cents
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+      - name: available_balance_cents
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+      - name: held_balance_cents
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+
+  - name: payment_requests
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'payment_requests')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'payment_requests')
+    columns:
+      - name: payment_id
+        data_tests: [unique, not_null]
+      - name: sender_wallet_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('wallet_opening'), field: wallet_id}
+      - name: recipient_wallet_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('wallet_opening'), field: wallet_id}
+      - name: payment_type
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: channel
+        data_tests: [not_null]
+      - name: origin_city
+        data_tests: [not_null]
+      - name: amount_cents
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+
+  - name: payment_attempts
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'payment_attempts')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'payment_attempts')
+    columns:
+      - name: attempt_id
+        data_tests: [unique, not_null]
+      - name: payment_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('payment_requests'), field: payment_id}
+      - name: attempt_number
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 1, max_value: 3}
+      - name: started_at_utc
+        data_tests: [not_null]
+      - name: available_balance_cents_at_start
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: {min_value: 0}
+
+  - name: ledger_entries
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'ledger_entries')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'ledger_entries')
+    columns:
+      - name: entry_id
+        data_tests: [unique, not_null]
+      - name: attempt_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('payment_attempts'), field: attempt_id}
+      - name: payment_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('payment_requests'), field: payment_id}
+      - name: wallet_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('wallet_opening'), field: wallet_id}
+      - name: entry_type
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: posted_at_utc
+        data_tests: [not_null]
+      - name: signed_amount_cents
+        data_tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments: {expression: "<> 0"}
+
+  - name: reason_codes
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'reason_codes')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'reason_codes')
+    columns:
+      - name: reason_code
+        data_tests: [ unique, not_null ]
+      - name: reason_class
+        data_tests: [ not_null ]
+      - name: description
+        data_tests: [ not_null ]
+      - name: retry_after_confirmed_failure
+        data_tests: [ not_null ]
+      - name: system_component
+        data_tests: [ not_null ]
+
+  - name: system_incidents
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'system_incidents')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'system_incidents')
+    columns:
+      - name: incident_id
+        data_tests: [ unique, not_null ]
+      - name: incident_type
+        data_tests: [ not_null ]
+      - name: affected_channel
+        data_tests: [ not_null ]
+      - name: affected_city
+        data_tests: [ not_null ]
+      - name: started_at_utc
+        data_tests: [ not_null ]
+      - name: ended_at_utc
+        data_tests: [ not_null ]
+      - name: recorded_by
+        data_tests: [ not_null ]
+
+  - name: event_deliveries
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'event_deliveries')
+      - column_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'event_deliveries')
+    columns:
+      - name: source_row_id
+        data_tests: [ unique, not_null ]
+      - name: delivery_id
+        data_tests: [ unique, not_null ]
+      - name: event_id
+        data_tests: [ not_null ]            # NOT unique, duplicates are expected here
+      - name: payment_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: { to: ref('payment_requests'), field: payment_id }
+      - name: attempt_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: { to: ref('payment_attempts'), field: attempt_id }
+      - name: event_at_utc
+        data_tests: [ not_null ]
+      - name: ingested_at_utc
+        data_tests: [ not_null ]
+      - name: status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments: { values: [ 'REQUESTED', 'PENDING', 'SUCCEEDED', 'FAILED' ] }
+      - name: system_component
+        data_tests: [ not_null ]
+      - name: reason_code             # nullable, so no not_null
+        data_tests:
+          - relationships:
+              arguments: { to: ref('reason_codes'), field: reason_code }
+      - name: incident_id             # nullable
+        data_tests:
+          - relationships:
+              arguments: { to: ref('system_incidents'), field: incident_id }
+
+  - name: events
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'event_deliveries')
+            distinct_key: event_id
+    columns:
+      - name: event_id
+        data_tests: [ unique, not_null ]
+      - name: delivery_count
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: { min_value: 1 }
+      - name: latency_seconds
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments: { min_value: 0 }       # an event can't arrive before it happened
+      - name: is_late
+        data_tests: [ not_null ]
+
+  - name: dataset_metadata
+    data_tests:
+      - row_count_matches_bronze:
+          arguments:
+            bronze: source('bronze', 'dataset_metadata')
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "observation_cutoff_utc > observation_start_utc"
+    columns:
+      - name: metadata_key
+        data_tests: [ unique, not_null ]
+      - name: observation_start_utc
+        data_tests: [ not_null ]
+      - name: observation_cutoff_utc
+        data_tests: [ not_null ]
+
+
+
+unit_tests:
+  - name: events_keeps_first_copy_and_counts_copies
+    model: events
+    given:
+      - input: ref('event_deliveries')
+        rows:
+          - {event_id: E1, delivery_id: D2, source_row_id: 2, event_at_utc: "2026-07-02 08:00:00", ingested_at_utc: "2026-07-02 08:10:00"}
+          - {event_id: E1, delivery_id: D1, source_row_id: 1, event_at_utc: "2026-07-02 08:00:00", ingested_at_utc: "2026-07-02 08:00:05"}
+          - {event_id: E2, delivery_id: D3, source_row_id: 3, event_at_utc: "2026-07-02 08:00:00", ingested_at_utc: "2026-07-03 12:00:00"}
+    expect:
+      rows:
+        - {event_id: E1, first_delivery_id: D1, delivery_count: 2, is_late: false}
+        - {event_id: E2, first_delivery_id: D3, delivery_count: 1, is_late: true}

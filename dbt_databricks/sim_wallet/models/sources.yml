@@ -1,0 +1,16 @@
+version: 2
+sources:
+  - name: bronze
+    database: sim_wallet
+    schema: bronze
+    tables:
+      - name: customers
+      - name: wallets_opening
+      - name: wallets_closing
+      - name: payment_requests
+      - name: payment_attempts
+      - name: event_deliveries
+      - name: ledger_entries
+      - name: reason_codes
+      - name: system_incidents
+      - name: dataset_metadata
