@@ -4,7 +4,7 @@ An end-to-end data engineering and analytics project on a **synthetic Somali mob
 Raw payment data with deliberately broken event delivery (duplicates, late arrivals, lost events) is turned into
 tested, reconciled reporting and a management memo with three investigation priorities.
 
-▶️ **Video walkthrough (Somali):** [YouTube](YOUTUBE_LINK_HERE)
+▶️ **Video walkthrough (Somali):** [YouTube](https://youtu.be/WrxIkwnhkRs?si=Jr2eumFOBmHmNFrE)
 📄 **Power BI report (PDF):** [docs/reports.pdf](docs/reports.pdf)
 
 > All people, balances, payments and incidents are synthetic. The provider `SIM_WALLET` is fictional.
@@ -80,14 +80,6 @@ accepted values, relationships, grain checks, and the unit-tested outcome rules)
 
 ## Dashboard
 
-**Page 1: Payment outcomes and failure causes**
-
-![Dashboard page 1](docs/dashboard_page1.png)
-
-**Page 2: Unresolved transfers and reconciliation**
-
-![Dashboard page 2](docs/dashboard_page2.png)
-
 Full report including the memo page: [docs/reports.pdf](docs/reports.pdf)
 
 ---
@@ -142,5 +134,4 @@ Credentials are never stored in this repository.
 
 ## Credits
 
-The data generator, MySQL schema, loader and business brief come from an 80-hour learning project scenario.
 The ingestion, dbt models and tests, Power BI report, analysis and memo are my own work.
