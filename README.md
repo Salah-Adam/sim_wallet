@@ -4,7 +4,7 @@ An end-to-end data engineering and analytics project on a **synthetic Somali mob
 Raw payment data with deliberately broken event delivery (duplicates, late arrivals, lost events) is turned into
 tested, reconciled reporting and a management memo with three investigation priorities.
 
-▶️ **Video walkthrough (Somali):** [YouTube](https://youtu.be/WrxIkwnhkRs?si=Jr2eumFOBmHmNFrE)
+▶️ **Video walkthrough (Somali):** [YouTube](https://youtu.be/snByG2yk87Q?si=TNugVrXmRHhk4L6t)
 📄 **Power BI report (PDF):** [docs/reports.pdf](docs/reports.pdf)
 
 > All people, balances, payments and incidents are synthetic. The provider `SIM_WALLET` is fictional.
